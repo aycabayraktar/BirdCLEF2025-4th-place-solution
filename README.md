@@ -2,13 +2,13 @@
 
 
 ## Runtime details  
-CPU: AMD Ryzen 7 (8 cores)
-GPU: RTX 4090
-OS: Linux
-Python version: 3.10
-Pytorch version: 2.5.1
+CPU: AMD Ryzen 7 (8 cores)  
+GPU: RTX 4090  
+OS: Linux  
+Python version: 3.10   
+Pytorch version: 2.5.1  
 
-# Setup  
+## Setup  
 1. Install Python 3.10 and Pytroch 2.5.1+CUDA if you don't have them on your machine.  
 How to install Python: https://docs.python.org/3/using/unix.html#on-linux  
 How to install Pytroch: https://pytorch.org/get-started/previous-versions/  
@@ -16,7 +16,7 @@ How to install Pytroch: https://pytorch.org/get-started/previous-versions/
 2. Install the required Python packages:  
 `pip install -r requirements.txt`  
 
-# Run the code 
+## Run the code 
 Frist of all, set data paths in "SETTINGS.json".  
 
 Training steps:    
