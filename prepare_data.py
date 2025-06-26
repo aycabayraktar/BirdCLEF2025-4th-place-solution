@@ -12,7 +12,9 @@ pool.close()
 pool.join()
 
 arg_parts = []
+print("Starting to check data configurations...")  # This should appear in the output
 for v in data_cfg_dict:
+    print("Data Config Dictionary: ", data_cfg_dict)  # This will show the contents of the dictionary
     # Print the current configuration and the augmentation flag
     use_augment = data_cfg_dict[v].USE_AUGMENT
     print(f"Checking config for version {v}: USE_AUGMENT = {use_augment}")
