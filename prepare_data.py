@@ -2,12 +2,12 @@ import os
 import multiprocessing as mp
 from configs.config import data_cfg_dict
 
-print("Command List before: ", arg_parts)  # Check the commands being added
 arg_parts = [
     'python utils/raw_data.py',
     'python utils/raw_semi_data.py'
 ]
-print("Command List after: ", arg_parts)  # Check the commands being added
+
+print("Command List: ", arg_parts)  # Check the commands being added
 pool = mp.Pool(processes=6)
 pool.map(os.system, arg_parts)
 pool.close()
