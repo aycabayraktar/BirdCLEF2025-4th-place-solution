@@ -15,8 +15,10 @@ arg_parts = []
 for v in data_cfg_dict:
     if data_cfg_dict[v].USE_AUGMENT:
         arg_parts.append(f'python utils/aug_data.py --version {v}')
+        print(f"data config aug data appending: {data_cfg_dict[v]}")
     else:
         arg_parts.append(f'python utils/data.py --version {v}')
+        print(f"data config data appending: {data_cfg_dict[v]}")
 pool = mp.Pool(processes=6)
 pool.map(os.system, arg_parts)
 pool.close()
