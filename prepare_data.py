@@ -13,12 +13,16 @@ pool.join()
 
 arg_parts = []
 for v in data_cfg_dict:
-    if data_cfg_dict[v].USE_AUGMENT:
+    # Print the current configuration and the augmentation flag
+    use_augment = data_cfg_dict[v].USE_AUGMENT
+    print(f"Checking config for version {v}: USE_AUGMENT = {use_augment}")
+    
+    if use_augment:
         arg_parts.append(f'python utils/aug_data.py --version {v}')
-        print(f"data config aug data appending: {data_cfg_dict[v]}")
+        print(f"Augmentation is enabled, running 'aug_data.py' for version {v}")
     else:
         arg_parts.append(f'python utils/data.py --version {v}')
-        print(f"data config data appending: {data_cfg_dict[v]}")
+        print(f"Augmentation is not enabled, running 'data.py' for version {v}")
 pool = mp.Pool(processes=6)
 pool.map(os.system, arg_parts)
 pool.close()
