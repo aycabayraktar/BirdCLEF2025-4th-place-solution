@@ -31,6 +31,7 @@ from configs.config import settings
 
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.ERROR)
+print("raw data file started")
 
 class CFG:
     seed = 42
@@ -47,6 +48,7 @@ class CFG:
     MIN_SOUND_DURATION= 5.0
     
 cfg = CFG()
+print(f"raw_data class {cfg}")
 
 def set_seed(seed=42):
     """
@@ -62,6 +64,7 @@ def set_seed(seed=42):
     torch.backends.cudnn.benchmark = False
     
 set_seed(cfg.seed)
+print(f"raw_data set seed {set_seed(cfg.seed)}")
 
 def apply_audio_augmentations(audio):
     if cfg.USE_AUGMENT:
@@ -76,6 +79,7 @@ def apply_audio_augmentations(audio):
         audio = audio*((np.random.rand()*1.5)+0.5) + noise_data*((np.random.rand()*1.5)+0.5)
 
     return audio
+    print(f"raw_data apply_audio {audio}")
 
 def process_audio_file(audio_path, cfg):
     """Process a single audio file to get the mel spectrogram"""
@@ -99,12 +103,13 @@ def process_audio_file(audio_path, cfg):
         audio_data = audio_data[:piece_len]
 
     return audio_data.astype(np.float32)
+    print(f"raw_data process_audio_file {audio_data.astype(np.float32}")
 
 def generate_spectrograms(df):
     set_seed(cfg.seed)
 
     """Generate spectrograms from audio files"""
-    print("Generating mel spectrograms from audio files...")
+    print("raw_data Generating mel spectrograms from audio files...")
     start_time = time.time()
 
     all_bird_data = {}
@@ -122,7 +127,7 @@ def generate_spectrograms(df):
             print(f'{i+1} files passed')
 
     end_time = time.time()
-    print(f"Processing completed in {end_time - start_time:.2f} seconds")
+    print(f"raw data Processing completed in {end_time - start_time:.2f} seconds")
 
     #return all_bird_data
 import pickle
@@ -137,9 +142,9 @@ if __name__ == "__main__":
     taxonomy_df = pd.read_csv(cfg.taxonomy_csv)
     with open(cfg.train_voice_data, 'rb') as f:
         cfg.voice_data = pickle.load(f)
-    print(f'all data: {len(train_df)}')
+    print(f'raw data all data: {len(train_df)}')
     train_df['file'] = [name.split('/')[-1] for name in train_df['filename'].values]
-    print(f'used data: {len(train_df)}')
+    print(f'raw data used data: {len(train_df)}')
     
     if 'filepath' not in train_df.columns:
         train_df['filepath'] = cfg.train_datadir + '/' + train_df.filename
