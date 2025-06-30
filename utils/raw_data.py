@@ -103,7 +103,7 @@ def process_audio_file(audio_path, cfg):
         audio_data = audio_data[:piece_len]
 
     return audio_data.astype(np.float32)
-    print(f"raw_data process_audio_file {audio_data.astype(np.float32}")
+    print(f"raw_data process_audio_file {audio_data.astype(np.float32)}")
 
 def generate_spectrograms(df):
     set_seed(cfg.seed)
