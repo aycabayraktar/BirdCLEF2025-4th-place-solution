@@ -31,13 +31,14 @@ class CFG:
     output_dir = settings['data_cache_dir'] + '/raw_semi_data'
 
 model_cfgs = []
+print(f"raw_semi_data class {model_cfgs}")
 ########################################################################################
 class MyCFG(CFG):
     FS = 32000
     WINDOW_SIZE  = 10
     TEST_DURATION = 60
 model_cfgs.append(MyCFG())
-
+print(f"raw_semi_data class {MyCFG()}")
 ########################################################################################
 
 for i, _cfg in enumerate(model_cfgs):
@@ -61,6 +62,7 @@ def audio2melspec(audio_data, cfg):
     )
     mel_spec_norm = mel_spec  
     return mel_spec_norm
+    print(f"raw_semi_data auido2melsec {mel_spec_norm}")
 
 
 class BirdCLEF2025Pipeline:
@@ -79,7 +81,7 @@ class BirdCLEF2025Pipeline:
         print("Loading taxonomy data...")
         self.taxonomy_df = pd.read_csv(self.cfg.taxonomy_csv)
         self.species_ids = self.taxonomy_df['primary_label'].tolist()
-        print(f"Number of classes: {len(self.species_ids)}")
+        print(f"raw_semi_data Number of classes: {len(self.species_ids)}")
 
 
     def find_model_files(self):
@@ -106,7 +108,7 @@ class BirdCLEF2025Pipeline:
         row_ids = []
         soundscape_id = Path(audio_path).stem
         
-        print(f"Processing {soundscape_id}")
+        print(f"raw_semi_data Processing {soundscape_id}")
         audio_data, _ = librosa.load(audio_path, sr=self.cfg.FS)
         assert len(audio_data) == self.cfg.TEST_DURATION*self.cfg.FS
     
@@ -121,7 +123,7 @@ class BirdCLEF2025Pipeline:
                     sf.write(f'{cfg.output_dir}/{row_id}.flac', audio_data[starti:starti+segment_len], cfg.FS)
                     break
                 except:
-                    print(f'{row_id}.flac failed to save, try again...')
+                    print(f'raw semi_data {row_id}.flac failed to save, try again...')
             
     def run_inference(self):
         """
@@ -132,7 +134,7 @@ class BirdCLEF2025Pipeline:
         test_files = list(Path(self.cfg.train_soundscapes).glob('*.ogg'))
         
         test_files = sorted(test_files)
-        print(f"Found {len(test_files)} test soundscapes")
+        print(f"raw_semi_data Found {len(test_files)} test soundscapes")
 
         all_row_ids = []
         all_predictions = []
