@@ -79,7 +79,6 @@ def apply_audio_augmentations(audio):
         audio = audio*((np.random.rand()*1.5)+0.5) + noise_data*((np.random.rand()*1.5)+0.5)
 
     return audio
-print(f"raw_data apply_audio {audio}")
 
 def process_audio_file(audio_path, cfg):
     """Process a single audio file to get the mel spectrogram"""
@@ -103,6 +102,7 @@ def process_audio_file(audio_path, cfg):
         audio_data = audio_data[:piece_len]
 
     return audio_data.astype(np.float32)
+
 print(f"raw_data process_audio_file {audio_data.astype(np.float32)}")
 
 def generate_spectrograms(df):
