@@ -38,7 +38,7 @@ class MyCFG(CFG):
     WINDOW_SIZE  = 10
     TEST_DURATION = 60
 model_cfgs.append(MyCFG())
-print(f"raw_semi_data class {MyCFG()}")
+print(f"raw_semi_data class {model_cfgs}")
 ########################################################################################
 
 for i, _cfg in enumerate(model_cfgs):
@@ -62,7 +62,6 @@ def audio2melspec(audio_data, cfg):
     )
     mel_spec_norm = mel_spec  
     return mel_spec_norm
-    print(f"raw_semi_data auido2melsec {mel_spec_norm}")
 
 
 class BirdCLEF2025Pipeline:
